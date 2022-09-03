@@ -9,9 +9,10 @@ export default {
 	moduleNameMapper: {
 		'~/(.*)': '<rootDir>/src/$1',
 	},
-	setupFilesAfterEnv: ['jest-extended/all'],
+	setupFilesAfterEnv: ['jest-extended/all', '<rootDir>/src/mocks/singleton.ts'],
 	testTimeout: 30000,
 	testPathIgnorePatterns: ['<rootDir>/dist/', '<rootDir>/node_modules/'],
 	coveragePathIgnorePatterns: ['<rootDir>/dist/', '<rootDir>/node_modules/'],
 	collectCoverage: true,
+	clearMocks: true,
 };
