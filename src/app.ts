@@ -20,7 +20,7 @@ validateEnv();
 
 let app: express.Application;
 let port: string | number;
-let env: boolean;
+let production: boolean;
 let server: Server;
 
 const main = async () => {
@@ -28,8 +28,9 @@ const main = async () => {
 	app = express();
 
 	port = process.env.PORT || 3000;
-	env = __PROD__;
+	production = __PROD__;
 
+	await initializeDatabase();
 	await initializeMiddlewares();
 	await initializeRoutes();
 	await initializeErrorHandling();
@@ -44,7 +45,7 @@ function initializeMiddlewares() {
 		})
 	);
 	app.use(cookieParser());
-	if (env) {
+	if (production) {
 		app.use(hpp());
 		app.use(helmet());
 		app.use(morgan('combined'));
