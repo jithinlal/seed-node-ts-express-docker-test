@@ -29,11 +29,12 @@ class UrlService {
 		const nanoId = nanoid(10);
 
 		// TODO a cache layer can be introduced here
-		if (findUrl(nanoId)) {
+		const isUrlFound = await findUrl(nanoId);
+		if (isUrlFound) {
 			return `${shortUrlBase}/${nanoId}`;
 		}
 
-		addUrl(urlData.url, nanoId);
+		await addUrl(urlData.url, nanoId);
 
 		return `${shortUrlBase}/${nanoId}`;
 	}
@@ -42,12 +43,12 @@ class UrlService {
 		const nanoId = urlData.url.trim().split('/').pop();
 
 		// TODO a cache layer can be introduced here
-		const url = findUrl(nanoId);
-		if (!url) {
+		const urlOutput = await findUrl(nanoId);
+		if (!urlOutput) {
 			throw new HttpException(404, 'Could not find the URL');
 		}
 
-		return url;
+		return urlOutput.url;
 	}
 }
 

@@ -15,6 +15,7 @@ import Route from '~/routes';
 import errorMiddleware from '~/middleware/error.middleware';
 import validateEnv from '~/utils/validateEnv';
 import { Server } from 'http';
+import { initializeDatabase } from '~/db';
 
 validateEnv();
 

@@ -1,12 +1,20 @@
-const urls = new Map();
+import { prisma } from '~/db';
 
 const addUrl = (url: string, nanoId: string) => {
-	urls.set(nanoId, url);
-	return url;
+	return prisma.url.create({
+		data: {
+			nanoId,
+			url,
+		},
+	});
 };
 
 const findUrl = (nanoId: string | undefined) => {
-	return urls.get(nanoId);
+	return prisma.url.findFirst({
+		where: {
+			nanoId,
+		},
+	});
 };
 
 export { addUrl, findUrl };
