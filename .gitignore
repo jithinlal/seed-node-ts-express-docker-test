@@ -122,3 +122,4 @@ src/assets/
 .idea/
 dist/
 Instructions.md
+newrelic.js
