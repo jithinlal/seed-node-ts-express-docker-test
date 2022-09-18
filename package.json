@@ -1,5 +1,5 @@
 {
-	"name": "finn",
+	"name": "seed",
 	"version": "1.0.0",
 	"description": "Your assignment is to implement a URL shortening service using Node and any framework.",
 	"main": "index.js",
